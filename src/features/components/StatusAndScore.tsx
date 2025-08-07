@@ -26,7 +26,7 @@ const StatusAndScore = ({
         {gameStatusCode === "P" && (
           <div className="flex gap-1 self-end">
             {detailedGameStatusCode === "PW" ? (
-              <div className="font-semibold text-xs">Warm up</div>
+              <div className="font-semibold text-xs">Pre-game warm up</div>
             ) : (
               <>
                 <div className="font-semibold text-xs">{gameTime}</div>
