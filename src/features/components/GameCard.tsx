@@ -6,7 +6,11 @@ import {
   TooltipTrigger,
 } from "../../components/ui/tooltip";
 import type { GameDate, ExtraTeamData, Game, ExtraGameData } from "../../types";
-import { fetchExtraTeamData, fetchExtraGameData, baseUrl } from "../../services/mlbApi";
+import {
+  fetchExtraTeamData,
+  fetchExtraGameData,
+  baseUrl,
+} from "../../services/mlbApi";
 
 // I grabbed these from the provided endpoint. I assume gameLevel doesn't change often
 const affiliateTeams = [
@@ -140,16 +144,6 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
           hour12: true,
         });
 
-        // Score of the game - A score can be zero, so we should fallback to null
-        const homeScore = home.score ?? null;
-        const awayScore = away.score ?? null;
-        console.log("home", home);
-        console.log("away", away);
-        const score =
-          homeScore !== null && awayScore !== null
-            ? `${awayScore} - ${homeScore}`
-            : "N/A";
-
         // Get extra team data from our record by team id
         const homeTeamData = teamData[homeTeamId];
         const awayTeamData = teamData[awayTeamId];
@@ -180,6 +174,14 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
         const savingPitcher = extraGameData?.savingPitcher || "";
 
         const runnersOnBase = extraGameData?.runners ?? [];
+
+        // Score of the game - A score can be zero, so we should fallback to null
+        const homeScore = extraGameData?.homeScore ?? null;
+        const awayScore = extraGameData?.awayScore ?? null;
+        const score =
+          homeScore !== null && awayScore !== null
+            ? `${awayScore} - ${homeScore}`
+            : "N/A";
 
         // Determine if the affiliate team is home or away
         const affiliateTeamHome = affiliateTeams.some(

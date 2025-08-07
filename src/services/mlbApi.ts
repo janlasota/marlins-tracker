@@ -54,7 +54,7 @@ export const fetchExtraGameData = async (
   const liveData = data.liveData;
   const gameData = data.gameData;
 
-  const { currentInning, outs, isTopInning, defense, offense } =
+  const { currentInning, outs, isTopInning, defense, offense, teams } =
     liveData.linescore;
   const { currentPlay } = liveData.plays;
   const { runners } = currentPlay ?? [];
@@ -68,6 +68,9 @@ export const fetchExtraGameData = async (
         (runner: { movement: { end: string; isOut: boolean } }) =>
           runner.movement.end
       ) ?? [];
+
+  const awayScore = teams.away.runs;
+  const homeScore = teams.home.runs;
 
   const { pitcher } = defense;
   const { batter } = offense;
@@ -88,6 +91,8 @@ export const fetchExtraGameData = async (
       outs,
       isTopInning,
       currentInning,
+      awayScore,
+      homeScore,
     };
   }
 
@@ -96,6 +101,8 @@ export const fetchExtraGameData = async (
       winningPitcher,
       losingPitcher,
       savingPitcher,
+      awayScore,
+      homeScore,
     };
   }
 

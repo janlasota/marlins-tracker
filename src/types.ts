@@ -6,7 +6,6 @@ interface Team {
 
 interface TeamDetails {
   team: Team;
-  score: number;
 }
 
 interface Teams {
@@ -42,6 +41,8 @@ interface Game {
 }
 
 interface ExtraGameData {
+  awayScore?: number;
+  homeScore?: number;
   winningPitcher?: string;
   losingPitcher?: string;
   savingPitcher?: string;
