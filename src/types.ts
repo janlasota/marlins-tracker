@@ -49,7 +49,7 @@ interface ExtraGameData {
   pitcher?: string;
   batter?: string;
   runners?: string[];
-  outs?: number;
+  outs?: number | null;
   isTopInning?: boolean;
   currentInning?: number;
   probablePitchers?: {

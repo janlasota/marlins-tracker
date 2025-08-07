@@ -251,18 +251,16 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                   )}
                   {gameStatusCode === "P" && (
                     <div className="flex flex-col gap-1">
-                      <span className="text-sm">
-                        {`Our probable pitcher: ${
-                          extraGameData?.probablePitchers?.home?.fullName ??
-                          "Unknown"
-                        }`}
-                      </span>
-                      <span className="text-sm">
-                        {`Their probable pitcher: ${
-                          extraGameData?.probablePitchers?.away?.fullName ??
-                          "Unknown"
-                        }`}
-                      </span>
+                      {extraGameData?.probablePitchers?.home?.fullName && (
+                        <span className="text-sm">
+                          {`Our probable pitcher: ${extraGameData.probablePitchers.home.fullName}`}
+                        </span>
+                      )}
+                      {extraGameData?.probablePitchers?.away?.fullName && (
+                        <span className="text-sm">
+                          {`Their probable pitcher: ${extraGameData.probablePitchers.away.fullName}`}
+                        </span>
+                      )}
                     </div>
                   )}
                   {gameStatusCode === "F" &&
@@ -281,6 +279,12 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                     )}
                   {gameStatusCode === "L" && (
                     <div className="flex flex-col items-end">
+                      {inning && (
+                        <div className="font-semibold text-xs">{inning}</div>
+                      )}
+                      {outs && (
+                        <div className="font-semibold text-xs">{outs}</div>
+                      )}
                       <div className="flex gap-1">
                         {bases.map((base) => (
                           <div
@@ -295,12 +299,6 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                           </div>
                         ))}
                       </div>
-                      {inning && (
-                        <div className="font-semibold text-xs">{inning}</div>
-                      )}
-                      {outs && (
-                        <div className="font-semibold text-xs">{outs}</div>
-                      )}
                     </div>
                   )}
                 </div>
@@ -361,18 +359,16 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                   )}
                   {gameStatusCode === "P" && (
                     <div className="flex flex-col gap-1">
-                      <span className="text-sm">
-                        {`Our probable pitcher: ${
-                          extraGameData?.probablePitchers?.away?.fullName ??
-                          "Unknown"
-                        }`}
-                      </span>
-                      <span className="text-sm">
-                        {`Their probable pitcher: ${
-                          extraGameData?.probablePitchers?.home?.fullName ??
-                          "Unknown"
-                        }`}
-                      </span>
+                      {extraGameData?.probablePitchers?.away?.fullName && (
+                        <span className="text-sm">
+                          {`Our probable pitcher: ${extraGameData.probablePitchers.away.fullName}`}
+                        </span>
+                      )}
+                      {extraGameData?.probablePitchers?.home?.fullName && (
+                        <span className="text-sm">
+                          {`Their probable pitcher: ${extraGameData.probablePitchers.home.fullName}`}
+                        </span>
+                      )}
                     </div>
                   )}
                   {gameStatusCode === "F" &&
@@ -391,6 +387,12 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                     )}
                   {gameStatusCode === "L" && (
                     <div className="flex flex-col items-end">
+                      {inning && (
+                        <div className="font-semibold text-xs">{inning}</div>
+                      )}
+                      {outs && (
+                        <div className="font-semibold text-xs">{outs}</div>
+                      )}
                       <div className="flex gap-1">
                         {bases.map((base) => (
                           <div
@@ -405,12 +407,6 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                           </div>
                         ))}
                       </div>
-                      {inning && (
-                        <div className="font-semibold text-xs">{inning}</div>
-                      )}
-                      {outs && (
-                        <div className="font-semibold text-xs">{outs}</div>
-                      )}
                     </div>
                   )}
                 </div>
