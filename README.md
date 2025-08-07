@@ -33,7 +33,7 @@ npm install node
 sudo npm install n -g
 ```
 
-## Getting Started
+## Running the App
 
 1. **Clone the repository**:
 
