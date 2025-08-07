@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { Spinner } from "../../components/ui/spinner";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "../../components/ui/tooltip";
 import type { GameDate, ExtraTeamData, Game, ExtraGameData } from "../../types";
 import {
   fetchExtraTeamData,
   fetchExtraGameData,
   baseUrl,
 } from "../../services/mlbApi";
+import CardDetails from "./CardDetails";
 
 // I grabbed these from the provided endpoint. I assume gameLevel doesn't change often
 const affiliateTeams = [
@@ -24,8 +20,6 @@ const affiliateTeams = [
   { id: 146, name: "Miami Marlins", gameLevel: "Major League Baseball" },
   { id: 467, name: "FCL Marlins", gameLevel: "Rookie" },
 ];
-
-const bases = ["1B", "2B", "3B"];
 
 const GameCard = ({ dates }: { dates: GameDate[] }) => {
   const games = dates?.map((date: GameDate) => date.games);
@@ -185,250 +179,34 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
             : "N/A";
 
         // Determine if the affiliate team is home or away
-        const affiliateTeamHome = affiliateTeams.some(
+        const isAffiliateTeamHome = affiliateTeams.some(
           (team) => team.id === homeTeamId
         );
-        const affiliateTeamAway = affiliateTeams.some(
-          (team) => team.id === awayTeamId
-        );
-
-        const renderPitcherInfo =
-          (gameStatusCode === "P" &&
-            (extraGameData?.probablePitchers?.away?.fullName ||
-              extraGameData?.probablePitchers?.home?.fullName)) ||
-          (gameStatusCode === "F" &&
-            (winningPitcher || losingPitcher || savingPitcher)) ||
-          gameStatusCode === "L";
 
         return (
           <div
             key={game.gamePk}
             className="border border-gray-300 rounded-md p-4 bg-white"
           >
-            {affiliateTeamHome && (
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <div className="flex justify-between items-center">
-                    <div className="font-bold">{gameLevel}</div>
-                    <div className="flex flex-col gap-1">
-                      {gameStatusCode !== "P" && (
-                        <div className="font-semibold text-xs">
-                          {gameStatus}
-                        </div>
-                      )}
-                      {(gameStatusCode === "F" || gameStatusCode === "L") &&
-                        score && (
-                          <div className="font-semibold text-xs">{score}</div>
-                        )}
-                      {gameStatusCode === "P" && (
-                        <div className="font-semibold text-xs">{gameTime}</div>
-                      )}
-                    </div>
-                  </div>
-                  {(gameStatusCode === "P" || gameStatusCode === "L") && (
-                    <span className="text-sm">{`Venue: ${venue.name}`}</span>
-                  )}
-                  <div className="flex items-center gap-1">
-                    {awayTeamData?.parentOrgName ? (
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <span className="cursor-pointer text-blue-500 underline">
-                            {away.team.name}
-                          </span>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          {`Parent club: ${awayTeamData.parentOrgName}`}
-                        </TooltipContent>
-                      </Tooltip>
-                    ) : (
-                      <span>{away.team.name}</span>
-                    )}
-                    <span>{" vs. "}</span>
-                    <span>{home.team.name}</span>
-                  </div>
-                </div>
-                {renderPitcherInfo && (
-                  <div className="flex justify-between items-center">
-                    {gameStatusCode === "P" && (
-                      <div className="flex flex-col gap-1">
-                        {extraGameData?.probablePitchers?.home?.fullName && (
-                          <span className="text-sm">
-                            {`Our probable pitcher: ${extraGameData.probablePitchers.home.fullName}`}
-                          </span>
-                        )}
-                        {extraGameData?.probablePitchers?.away?.fullName && (
-                          <span className="text-sm">
-                            {`Their probable pitcher: ${extraGameData.probablePitchers.away.fullName}`}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {gameStatusCode === "F" &&
-                      (winningPitcher || losingPitcher || savingPitcher) && (
-                        <div className="flex flex-col gap-1">
-                          {winningPitcher && (
-                            <span className="text-sm">{`Winning pitcher: ${winningPitcher}`}</span>
-                          )}
-                          {losingPitcher && (
-                            <span className="text-sm">{`Losing pitcher: ${losingPitcher}`}</span>
-                          )}
-                          {savingPitcher && (
-                            <span className="text-sm">{`Saving pitcher: ${savingPitcher}`}</span>
-                          )}
-                        </div>
-                      )}
-                    {gameStatusCode === "L" && (
-                      <>
-                        <div className="flex flex-col gap-1">
-                          <span className="text-sm">
-                            {`Current pitcher: ${extraGameData?.pitcher}`}
-                          </span>
-                          <span className="text-sm">
-                            {`Up-to-bat: ${extraGameData?.batter}`}
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-end">
-                          {inning && (
-                            <div className="font-semibold text-xs">
-                              {inning}
-                            </div>
-                          )}
-                          {outs && (
-                            <div className="font-semibold text-xs">{outs}</div>
-                          )}
-                          <div className="flex gap-1">
-                            {bases.map((base) => (
-                              <div
-                                key={base}
-                                className={`font-semibold text-xs p-0.25 ${
-                                  runnersOnBase.includes(base)
-                                    ? "bg-black text-white rounded-md"
-                                    : "text-black"
-                                }`}
-                              >
-                                {base}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-            {affiliateTeamAway && (
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <div className="flex justify-between items-center">
-                    <div className="font-bold">{gameLevel}</div>
-                    <div className="flex flex-col gap-1">
-                      {gameStatusCode !== "P" && (
-                        <div className="font-semibold text-xs">
-                          {gameStatus}
-                        </div>
-                      )}
-                      {(gameStatusCode === "F" || gameStatusCode === "L") &&
-                        score && (
-                          <div className="font-semibold text-xs">{score}</div>
-                        )}
-                      {gameStatusCode === "P" && (
-                        <div className="font-semibold text-xs">{gameTime}</div>
-                      )}
-                    </div>
-                  </div>
-                  {(gameStatusCode === "P" || gameStatusCode === "L") && (
-                    <span className="text-sm">{`Venue: ${venue.name}`}</span>
-                  )}
-                  <div className="flex items-center gap-1">
-                    <span>{away.team.name}</span>
-                    <span>{" @ "}</span>
-                    {homeTeamData?.parentOrgName ? (
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <span className="cursor-pointer text-blue-500 underline">
-                            {home.team.name}
-                          </span>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          {`Parent club: ${homeTeamData.parentOrgName}`}
-                        </TooltipContent>
-                      </Tooltip>
-                    ) : (
-                      <span>{home.team.name}</span>
-                    )}
-                  </div>
-                </div>
-                {renderPitcherInfo && (
-                  <div className="flex justify-between items-center">
-                    {gameStatusCode === "P" && (
-                      <div className="flex flex-col gap-1">
-                        {extraGameData?.probablePitchers?.away?.fullName && (
-                          <span className="text-sm">
-                            {`Our probable pitcher: ${extraGameData.probablePitchers.away.fullName}`}
-                          </span>
-                        )}
-                        {extraGameData?.probablePitchers?.home?.fullName && (
-                          <span className="text-sm">
-                            {`Their probable pitcher: ${extraGameData.probablePitchers.home.fullName}`}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {gameStatusCode === "F" &&
-                      (winningPitcher || losingPitcher || savingPitcher) && (
-                        <div className="flex flex-col gap-1">
-                          {winningPitcher && (
-                            <span className="text-sm">{`Winning pitcher: ${winningPitcher}`}</span>
-                          )}
-                          {losingPitcher && (
-                            <span className="text-sm">{`Losing pitcher: ${losingPitcher}`}</span>
-                          )}
-                          {savingPitcher && (
-                            <span className="text-sm">{`Saving pitcher: ${savingPitcher}`}</span>
-                          )}
-                        </div>
-                      )}
-                    {gameStatusCode === "L" && (
-                      <>
-                        <div className="flex flex-col gap-1">
-                          <span className="text-sm">
-                            {`Current pitcher: ${extraGameData?.pitcher}`}
-                          </span>
-                          <span className="text-sm">
-                            {`Up-to-bat: ${extraGameData?.batter}`}
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-end">
-                          {inning && (
-                            <div className="font-semibold text-xs">
-                              {inning}
-                            </div>
-                          )}
-                          {outs && (
-                            <div className="font-semibold text-xs">{outs}</div>
-                          )}
-                          <div className="flex gap-1">
-                            {bases.map((base) => (
-                              <div
-                                key={base}
-                                className={`font-semibold text-xs p-0.25 ${
-                                  runnersOnBase.includes(base)
-                                    ? "bg-black text-white rounded-md"
-                                    : "text-black"
-                                }`}
-                              >
-                                {base}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
+            <CardDetails
+              isAffiliateTeamHome={isAffiliateTeamHome}
+              gameLevel={gameLevel}
+              gameStatus={gameStatus}
+              gameStatusCode={gameStatusCode}
+              gameTime={gameTime}
+              score={score}
+              venue={venue}
+              teamData={isAffiliateTeamHome ? homeTeamData : awayTeamData}
+              homeTeamName={home.team.name}
+              awayTeamName={away.team.name}
+              extraGameData={extraGameData}
+              winningPitcher={winningPitcher}
+              losingPitcher={losingPitcher}
+              savingPitcher={savingPitcher}
+              inning={inning}
+              outs={outs}
+              runnersOnBase={runnersOnBase}
+            />
           </div>
         );
       })}
@@ -439,7 +217,7 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
             className="border border-gray-300 rounded-md p-4 bg-white"
           >
             <div className="flex justify-between items-center">
-              <div>{team.name}</div>
+              <span>{team.name}</span>
               <div className="font-semibold">NO GAME</div>
             </div>
           </div>

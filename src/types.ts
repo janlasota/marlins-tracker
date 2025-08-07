@@ -74,4 +74,4 @@ interface ExtraTeamData {
   teamName: string;
 }
 
-export type { GameDate, ExtraTeamData, Game, ExtraGameData };
+export type { GameDate, ExtraTeamData, Game, ExtraGameData, Venue };
