@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+# marlins-tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Track Miami Marlins games and their affiliate teams in real time
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19
+- Vite 7.0
+- TypeScript
+- Tailwind
+- Shadcn
 
-## Expanding the ESLint configuration
+## Before you Get Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project requires Node.js version 20.10.0 or later due to Vite 7.0.0 compatibility. If you encounter the error `TypeError: crypto.hash is not a function`, make sure to upgrade your Node.js version. You can find that issue reported [here](https://github.com/vitejs/vite/issues/20287).
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+### Check your Node.js version:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+node --version
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Install/Upgrade Node.js if needed:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+- **macOS**: Use [nvm](https://github.com/nvm-sh/nvm) or download from [nodejs.org](https://nodejs.org/)
+- **Windows**: Download from [nodejs.org](https://nodejs.org/)
+- **Linux**: Use your package manager or [nvm](https://github.com/nvm-sh/nvm)
 
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+### Fix for crypto.hash issue above:
+
+```bash
+npm install node
+sudo npm install n -g
 ```
+
+## Getting Started
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone <repository-url>
+   cd marlins-tracker
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to the URL displayed in the terminal, which should be `http://localhost:5173`.
