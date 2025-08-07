@@ -149,6 +149,8 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
         // Get status of the game (Preview = P, Live = L, Final = F)
         const gameStatus = status.abstractGameState;
         const gameStatusCode = status.abstractGameCode;
+        // (PI = Inclement?, PW = Warmup?)
+        const detailedGameStatusCode = status.statusCode;
 
         // Get extra game data from our record by game id
         const extraGameData = gameData[game.gamePk];
@@ -193,6 +195,7 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
               gameLevel={gameLevel}
               gameStatus={gameStatus}
               gameStatusCode={gameStatusCode}
+              detailedGameStatusCode={detailedGameStatusCode}
               gameTime={gameTime}
               score={score}
               venue={venue}

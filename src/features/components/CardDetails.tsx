@@ -13,6 +13,7 @@ interface CardDetailsProps {
   gameLevel: string;
   gameStatus: string;
   gameStatusCode: string;
+  detailedGameStatusCode: string;
   gameTime: string;
   score: string;
   venue: Venue;
@@ -33,6 +34,7 @@ const CardDetails = ({
   gameLevel,
   gameStatus,
   gameStatusCode,
+  detailedGameStatusCode,
   gameTime,
   score,
   venue,
@@ -61,6 +63,7 @@ const CardDetails = ({
         <StatusAndScore
           gameLevel={gameLevel}
           gameStatusCode={gameStatusCode}
+          detailedGameStatusCode={detailedGameStatusCode}
           gameStatus={gameStatus}
           score={score}
           gameTime={gameTime}
