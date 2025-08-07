@@ -239,16 +239,6 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  {gameStatusCode === "L" && (
-                    <div className="flex flex-col gap-1">
-                      <span className="text-sm">
-                        {`Current pitcher: ${extraGameData?.pitcher}`}
-                      </span>
-                      <span className="text-sm">
-                        {`Up-to-bat: ${extraGameData?.batter}`}
-                      </span>
-                    </div>
-                  )}
                   {gameStatusCode === "P" && (
                     <div className="flex flex-col gap-1">
                       {extraGameData?.probablePitchers?.home?.fullName && (
@@ -278,28 +268,38 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                       </div>
                     )}
                   {gameStatusCode === "L" && (
-                    <div className="flex flex-col items-end">
-                      {inning && (
-                        <div className="font-semibold text-xs">{inning}</div>
-                      )}
-                      {outs && (
-                        <div className="font-semibold text-xs">{outs}</div>
-                      )}
-                      <div className="flex gap-1">
-                        {bases.map((base) => (
-                          <div
-                            key={base}
-                            className={`font-semibold text-xs p-0.25 ${
-                              runnersOnBase.includes(base)
-                                ? "bg-black text-white rounded-md"
-                                : "text-black"
-                            }`}
-                          >
-                            {base}
-                          </div>
-                        ))}
+                    <>
+                      <div className="flex flex-col gap-1">
+                        <span className="text-sm">
+                          {`Current pitcher: ${extraGameData?.pitcher}`}
+                        </span>
+                        <span className="text-sm">
+                          {`Up-to-bat: ${extraGameData?.batter}`}
+                        </span>
                       </div>
-                    </div>
+                      <div className="flex flex-col items-end">
+                        {inning && (
+                          <div className="font-semibold text-xs">{inning}</div>
+                        )}
+                        {outs && (
+                          <div className="font-semibold text-xs">{outs}</div>
+                        )}
+                        <div className="flex gap-1">
+                          {bases.map((base) => (
+                            <div
+                              key={base}
+                              className={`font-semibold text-xs p-0.25 ${
+                                runnersOnBase.includes(base)
+                                  ? "bg-black text-white rounded-md"
+                                  : "text-black"
+                              }`}
+                            >
+                              {base}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
@@ -347,16 +347,6 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  {gameStatusCode === "L" && (
-                    <div className="flex flex-col gap-1">
-                      <span className="text-sm">
-                        {`Current pitcher: ${extraGameData?.pitcher}`}
-                      </span>
-                      <span className="text-sm">
-                        {`Up-to-bat: ${extraGameData?.batter}`}
-                      </span>
-                    </div>
-                  )}
                   {gameStatusCode === "P" && (
                     <div className="flex flex-col gap-1">
                       {extraGameData?.probablePitchers?.away?.fullName && (
@@ -386,28 +376,38 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
                       </div>
                     )}
                   {gameStatusCode === "L" && (
-                    <div className="flex flex-col items-end">
-                      {inning && (
-                        <div className="font-semibold text-xs">{inning}</div>
-                      )}
-                      {outs && (
-                        <div className="font-semibold text-xs">{outs}</div>
-                      )}
-                      <div className="flex gap-1">
-                        {bases.map((base) => (
-                          <div
-                            key={base}
-                            className={`font-semibold text-xs p-0.25 ${
-                              runnersOnBase.includes(base)
-                                ? "bg-black text-white rounded-md"
-                                : "text-black"
-                            }`}
-                          >
-                            {base}
-                          </div>
-                        ))}
+                    <>
+                      <div className="flex flex-col gap-1">
+                        <span className="text-sm">
+                          {`Current pitcher: ${extraGameData?.pitcher}`}
+                        </span>
+                        <span className="text-sm">
+                          {`Up-to-bat: ${extraGameData?.batter}`}
+                        </span>
                       </div>
-                    </div>
+                      <div className="flex flex-col items-end">
+                        {inning && (
+                          <div className="font-semibold text-xs">{inning}</div>
+                        )}
+                        {outs && (
+                          <div className="font-semibold text-xs">{outs}</div>
+                        )}
+                        <div className="flex gap-1">
+                          {bases.map((base) => (
+                            <div
+                              key={base}
+                              className={`font-semibold text-xs p-0.25 ${
+                                runnersOnBase.includes(base)
+                                  ? "bg-black text-white rounded-md"
+                                  : "text-black"
+                              }`}
+                            >
+                              {base}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
