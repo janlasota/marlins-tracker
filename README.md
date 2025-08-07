@@ -54,4 +54,4 @@ sudo npm install n -g
    npm run dev
    ```
 
-4. Open your browser and navigate to the URL displayed in the terminal, which should be `http://localhost:5173`.
+4. Open your browser and navigate to the URL displayed in the terminal, which should be `http://localhost:5173/marlins-tracker/`.
