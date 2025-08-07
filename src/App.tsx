@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-screen w-screen overflow-x-hidden bg-gray-200">
       <GameTracker gameDates={gameDates} setGameDates={setGameDates} />
     </div>
   );

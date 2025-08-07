@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { GameCard } from "./components";
 import { DatePicker } from "../components/ui/date-picker";
-import type { GameDate } from "../types";
 import { fetchGameDatesData } from "../services/mlbApi";
+import type { GameDate } from "../types";
+import { GameCard } from "./components";
 
 const GameTracker = ({
   gameDates,
@@ -24,12 +24,14 @@ const GameTracker = ({
 
   return (
     <div className="p-4 bg-gray-200">
-      <div className="flex justify-between gap-2">
-        <h1 className="font-bold text-3xl">Marlins Tracker</h1>
-        <div className="flex flex-col w-2/3">
+      <div className="flex justify-between">
+        <h1 className="font-bold text-3xl w-1/5">Marlins Tracker</h1>
+        <div className="flex flex-col w-3/5">
           <GameCard dates={gameDates} />
         </div>
-        <DatePicker dateValue={dateValue} setDateValue={setDateValue} />
+        <div className="flex justify-end w-1/5">
+          <DatePicker dateValue={dateValue} setDateValue={setDateValue} />
+        </div>
       </div>
     </div>
   );
