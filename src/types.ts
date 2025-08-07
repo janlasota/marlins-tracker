@@ -16,6 +16,8 @@ interface Teams {
 interface GameStatus {
   abstractGameState: string;
   abstractGameCode: string;
+  // This seems to be more specific than abstractGameCode (weather delays, warm up, etc.)
+  statusCode: string;
   // ...Other fields
 }
 
@@ -74,4 +76,4 @@ interface ExtraTeamData {
   teamName: string;
 }
 
-export type { GameDate, ExtraTeamData, Game, ExtraGameData };
+export type { GameDate, ExtraTeamData, Game, ExtraGameData, Venue };
