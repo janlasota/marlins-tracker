@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { Spinner } from "../../components/ui/spinner";
 import {
   Tooltip,
   TooltipContent,
@@ -115,8 +116,8 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
 
   if (loading) {
     return (
-      <div className="flex text-2xl font-bold justify-center items-center h-[calc(100vh-100px)]">
-        Loading...
+      <div className="flex text-2xl justify-center items-center h-[calc(100vh-100px)]">
+        <Spinner />
       </div>
     );
   }
