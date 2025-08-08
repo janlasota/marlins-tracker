@@ -1,14 +1,12 @@
 const bases = ["1B", "2B", "3B"];
 
-const InningData = ({
-  inning,
-  outs,
-  runnersOnBase,
-}: {
+interface InningDataProps {
   inning: string | null;
   outs: string | null;
   runnersOnBase: string[];
-}) => {
+}
+
+const InningData = ({ inning, outs, runnersOnBase }: InningDataProps) => {
   return (
     <div className="flex flex-col items-end">
       {inning && <div className="font-semibold text-xs">{inning}</div>}

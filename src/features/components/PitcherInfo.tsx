@@ -1,5 +1,31 @@
 import type { ExtraGameData } from "../../types";
 
+const getProbablePitchers = ({
+  extraGameData,
+  isAffiliateTeamHome,
+}: {
+  extraGameData: ExtraGameData;
+  isAffiliateTeamHome: boolean;
+}) => {
+  const home = extraGameData?.probablePitchers?.home;
+  const away = extraGameData?.probablePitchers?.away;
+  const ourPitcher = isAffiliateTeamHome ? home?.fullName : away?.fullName;
+  const theirPitcher = isAffiliateTeamHome ? away?.fullName : home?.fullName;
+
+  return (
+    <div className="flex flex-col gap-1">
+      {ourPitcher && (
+        <span className="text-sm">{`Our probable pitcher: ${ourPitcher}`}</span>
+      )}
+      {theirPitcher && (
+        <span className="text-sm">
+          {`Their probable pitcher: ${theirPitcher}`}
+        </span>
+      )}
+    </div>
+  );
+};
+
 interface PitcherInfoProps {
   gameStatusCode: string;
   isAffiliateTeamHome: boolean;
@@ -19,37 +45,8 @@ const PitcherInfo = ({
 }: PitcherInfoProps) => {
   return (
     <>
-      {gameStatusCode === "P" && (
-        <div className="flex flex-col gap-1">
-          {isAffiliateTeamHome ? (
-            <>
-              {extraGameData?.probablePitchers?.home?.fullName && (
-                <span className="text-sm">
-                  {`Our probable pitcher: ${extraGameData.probablePitchers.home.fullName}`}
-                </span>
-              )}
-              {extraGameData?.probablePitchers?.away?.fullName && (
-                <span className="text-sm">
-                  {`Their probable pitcher: ${extraGameData.probablePitchers.away.fullName}`}
-                </span>
-              )}
-            </>
-          ) : (
-            <>
-              {extraGameData?.probablePitchers?.away?.fullName && (
-                <span className="text-sm">
-                  {`Our probable pitcher: ${extraGameData.probablePitchers.away.fullName}`}
-                </span>
-              )}
-              {extraGameData?.probablePitchers?.home?.fullName && (
-                <span className="text-sm">
-                  {`Their probable pitcher: ${extraGameData.probablePitchers.home.fullName}`}
-                </span>
-              )}
-            </>
-          )}
-        </div>
-      )}
+      {gameStatusCode === "P" &&
+        getProbablePitchers({ extraGameData, isAffiliateTeamHome })}
       {gameStatusCode === "F" &&
         (winningPitcher || losingPitcher || savingPitcher) && (
           <div className="flex flex-col gap-1">

@@ -1,3 +1,12 @@
+interface StatusAndScoreProps {
+  gameLevel: string;
+  gameStatusCode: string;
+  detailedGameStatusCode: string;
+  gameStatus: string;
+  score: string;
+  gameTime: string;
+}
+
 const StatusAndScore = ({
   gameLevel,
   gameStatusCode,
@@ -5,14 +14,7 @@ const StatusAndScore = ({
   gameStatus,
   score,
   gameTime,
-}: {
-  gameLevel: string;
-  gameStatusCode: string;
-  detailedGameStatusCode: string;
-  gameStatus: string;
-  score: string;
-  gameTime: string;
-}) => {
+}: StatusAndScoreProps) => {
   return (
     <div className="flex justify-between items-center">
       <div className="font-bold">{gameLevel}</div>
