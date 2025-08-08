@@ -61,12 +61,14 @@ const GameTracker = ({
 
   return (
     <div className="p-4 bg-gray-200">
-      <div className="flex justify-between">
-        <h1 className="font-bold text-3xl w-1/5">Marlins Tracker</h1>
-        <div className="flex flex-col w-3/5">
+      <div className="flex flex-col gap-4 md:flex-row md:justify-between">
+        <h1 className="font-bold text-3xl text-center md:text-left">
+          Marlins Tracker
+        </h1>
+        <div className="flex flex-col order-3 md:order-2 md:w-3/5">
           <GameCard dates={gameDates} />
         </div>
-        <div className="flex justify-end w-1/5">
+        <div className="flex justify-center order-2 md:order-3 md:justify-end">
           <div className="flex flex-col gap-2">
             <DatePicker dateValue={dateValue} setDateValue={setDateValue} />
             <Button
@@ -85,7 +87,7 @@ const GameTracker = ({
               {enableRefresh ? "Disable Auto Refresh" : "Enable Auto Refresh"}
             </Button>
             {enableRefresh && (
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-gray-600 text-center md:text-left">
                 {`Next refresh in: ${formatTime(timer)}`}
               </div>
             )}
