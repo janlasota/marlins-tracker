@@ -35,7 +35,9 @@ export function DatePicker({
             selected={dateValue}
             captionLayout="dropdown"
             onSelect={(date) => {
-              setDateValue(date);
+              if (date) {
+                setDateValue(date);
+              }
               setOpen(false);
             }}
           />
