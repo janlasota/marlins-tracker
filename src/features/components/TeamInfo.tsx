@@ -7,22 +7,24 @@ import type { ExtraTeamData } from "../../types";
 
 interface TeamInfoProps {
   isAffiliateTeamHome: boolean;
-  teamData: ExtraTeamData;
-  awayTeamName: string;
+  homeTeamData: ExtraTeamData;
   homeTeamName: string;
+  awayTeamData: ExtraTeamData;
+  awayTeamName: string;
 }
 
 const TeamInfo = ({
   isAffiliateTeamHome,
-  teamData,
-  awayTeamName,
+  homeTeamData,
   homeTeamName,
+  awayTeamData,
+  awayTeamName,
 }: TeamInfoProps) => {
   return (
     <div className="flex items-center gap-1">
       {isAffiliateTeamHome ? (
         <>
-          {teamData?.parentOrgName ? (
+          {awayTeamData?.parentOrgName ? (
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="cursor-pointer text-blue-500 underline truncate">
@@ -30,7 +32,7 @@ const TeamInfo = ({
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                {`Parent club: ${teamData.parentOrgName}`}
+                {`Parent club: ${awayTeamData.parentOrgName}`}
               </TooltipContent>
             </Tooltip>
           ) : (
@@ -43,7 +45,7 @@ const TeamInfo = ({
         <>
           <span className="truncate">{awayTeamName}</span>
           <span>{" @ "}</span>
-          {teamData?.parentOrgName ? (
+          {homeTeamData?.parentOrgName ? (
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="cursor-pointer text-blue-500 underline truncate">
@@ -51,7 +53,7 @@ const TeamInfo = ({
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                {`Parent club: ${teamData.parentOrgName}`}
+                {`Parent club: ${homeTeamData.parentOrgName}`}
               </TooltipContent>
             </Tooltip>
           ) : (

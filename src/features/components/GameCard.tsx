@@ -199,7 +199,8 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
               gameTime={gameTime}
               score={score}
               venue={venue}
-              teamData={isAffiliateTeamHome ? homeTeamData : awayTeamData}
+              homeTeamData={homeTeamData}
+              awayTeamData={awayTeamData}
               homeTeamName={home.team.name}
               awayTeamName={away.team.name}
               extraGameData={extraGameData}
