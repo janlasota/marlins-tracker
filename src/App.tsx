@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen w-screen overflow-x-hidden bg-gray-200">
+    <div className="h-screen w-screen overflow-x-hidden bg-[#00A3E0]">
       <GameTracker gameDates={gameDates} setGameDates={setGameDates} />
     </div>
   );
