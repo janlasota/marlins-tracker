@@ -13,8 +13,9 @@ interface CardDetailsProps {
   gameTime: string;
   score: string;
   venue: Venue;
-  teamData: ExtraTeamData;
+  homeTeamData: ExtraTeamData;
   homeTeamName: string;
+  awayTeamData: ExtraTeamData;
   awayTeamName: string;
   extraGameData: ExtraGameData;
   winningPitcher: string;
@@ -34,8 +35,9 @@ const CardDetails = ({
   gameTime,
   score,
   venue,
-  teamData,
+  homeTeamData,
   homeTeamName,
+  awayTeamData,
   awayTeamName,
   extraGameData,
   winningPitcher,
@@ -69,7 +71,8 @@ const CardDetails = ({
         )}
         <TeamInfo
           isAffiliateTeamHome={isAffiliateTeamHome}
-          teamData={teamData}
+          homeTeamData={homeTeamData}
+          awayTeamData={awayTeamData}
           awayTeamName={awayTeamName}
           homeTeamName={homeTeamName}
         />
