@@ -185,6 +185,8 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
           (team) => team.id === homeTeamId
         );
 
+        // update
+
         return (
           <div
             key={game.gamePk}
