@@ -77,7 +77,7 @@ const CardDetails = ({
               {teamData?.parentOrgName ? (
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <span className="cursor-pointer text-blue-500 underline">
+                    <span className="cursor-pointer text-blue-500 underline truncate">
                       {awayTeamName}
                     </span>
                   </TooltipTrigger>
@@ -86,19 +86,19 @@ const CardDetails = ({
                   </TooltipContent>
                 </Tooltip>
               ) : (
-                <span>{awayTeamName}</span>
+                <span className="truncate">{awayTeamName}</span>
               )}
               <span>{" vs. "}</span>
-              <span>{homeTeamName}</span>
+              <span className="truncate">{homeTeamName}</span>
             </>
           ) : (
             <>
-              <span>{awayTeamName}</span>
+              <span className="truncate">{awayTeamName}</span>
               <span>{" @ "}</span>
               {teamData?.parentOrgName ? (
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <span className="cursor-pointer text-blue-500 underline">
+                    <span className="cursor-pointer text-blue-500 underline truncate">
                       {homeTeamName}
                     </span>
                   </TooltipTrigger>
@@ -107,7 +107,7 @@ const CardDetails = ({
                   </TooltipContent>
                 </Tooltip>
               ) : (
-                <span>{homeTeamName}</span>
+                <span className="truncate">{homeTeamName}</span>
               )}
             </>
           )}
