@@ -188,7 +188,7 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
         return (
           <div
             key={game.gamePk}
-            className="border border-gray-300 rounded-md p-4 bg-white"
+            className="border-2 border-[#EF3340] rounded-md p-4 bg-white"
           >
             <CardDetails
               isAffiliateTeamHome={isAffiliateTeamHome}
@@ -217,7 +217,7 @@ const GameCard = ({ dates }: { dates: GameDate[] }) => {
         return (
           <div
             key={team.id}
-            className="border border-gray-300 rounded-md p-4 bg-white"
+            className="border-2 border-[#EF3340] rounded-md p-4 bg-white"
           >
             <div className="flex justify-between items-center">
               <span>{team.name}</span>

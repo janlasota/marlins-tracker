@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import marlinsLogo from "../../public/marlins.svg";
 import { Button } from "../components/ui/button";
 import { DatePicker } from "../components/ui/date-picker";
 import { fetchGameDatesData } from "../services/mlbApi";
@@ -60,11 +61,14 @@ const GameTracker = ({
   };
 
   return (
-    <div className="p-4 bg-gray-200">
+    <div className="p-4 bg-[#00A3E0]">
       <div className="flex flex-col gap-4 md:flex-row md:justify-between">
-        <h1 className="font-bold text-3xl text-center md:text-left">
-          Marlins Tracker
-        </h1>
+        <div className="flex justify-center gap-3">
+          <img src={marlinsLogo} alt="Miami Marlins Logo" className="w-9 h-9" />
+          <h1 className="font-bold text-3xl text-center md:text-left">
+            Marlins Tracker
+          </h1>
+        </div>
         <div className="flex flex-col order-3 md:order-2 md:w-3/5">
           <GameCard dates={gameDates} />
         </div>
@@ -87,7 +91,7 @@ const GameTracker = ({
               {enableRefresh ? "Disable Auto Refresh" : "Enable Auto Refresh"}
             </Button>
             {enableRefresh && (
-              <div className="text-sm text-gray-600 text-center md:text-left">
+              <div className="text-sm text-white text-center md:text-left">
                 {`Next refresh in: ${formatTime(timer)}`}
               </div>
             )}
