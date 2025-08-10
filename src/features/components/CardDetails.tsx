@@ -1,12 +1,8 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "../../components/ui/tooltip";
 import type { ExtraGameData, ExtraTeamData, Venue } from "../../types";
 import InningData from "./InningData";
 import PitcherInfo from "./PitcherInfo";
 import StatusAndScore from "./StatusAndScore";
+import TeamInfo from "./TeamInfo";
 
 interface CardDetailsProps {
   isAffiliateTeamHome: boolean;
@@ -71,47 +67,12 @@ const CardDetails = ({
         {(gameStatusCode === "P" || gameStatusCode === "L") && (
           <span className="text-sm">{`Venue: ${venue.name}`}</span>
         )}
-        <div className="flex items-center gap-1">
-          {isAffiliateTeamHome ? (
-            <>
-              {teamData?.parentOrgName ? (
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span className="cursor-pointer text-blue-500 underline truncate">
-                      {awayTeamName}
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {`Parent club: ${teamData.parentOrgName}`}
-                  </TooltipContent>
-                </Tooltip>
-              ) : (
-                <span className="truncate">{awayTeamName}</span>
-              )}
-              <span>{" vs. "}</span>
-              <span className="truncate">{homeTeamName}</span>
-            </>
-          ) : (
-            <>
-              <span className="truncate">{awayTeamName}</span>
-              <span>{" @ "}</span>
-              {teamData?.parentOrgName ? (
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span className="cursor-pointer text-blue-500 underline truncate">
-                      {homeTeamName}
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {`Parent club: ${teamData.parentOrgName}`}
-                  </TooltipContent>
-                </Tooltip>
-              ) : (
-                <span className="truncate">{homeTeamName}</span>
-              )}
-            </>
-          )}
-        </div>
+        <TeamInfo
+          isAffiliateTeamHome={isAffiliateTeamHome}
+          teamData={teamData}
+          awayTeamName={awayTeamName}
+          homeTeamName={homeTeamName}
+        />
       </div>
       {renderPitcherInfo && (
         <div className="flex justify-between items-center">
