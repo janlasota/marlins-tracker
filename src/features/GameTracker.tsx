@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import marlinsLogo from "../../assets/marlins.svg";
+import marlinsLogo from "../assets/marlins.svg";
 import { Button } from "../components/ui/button";
 import { DatePicker } from "../components/ui/date-picker";
 import { fetchGameDatesData } from "../services/mlbApi";
